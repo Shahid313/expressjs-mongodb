@@ -1,0 +1,68 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+===========================
+To create database/To switch to a databases
+> use shahiddb
+==============================
+To create collection
+> db.createCollection("biodata")
+========================================
+To show on which database are you working
+> db
+==========================================
+To drop database
+> db.dropDatabase()
+==============================
+To show collections
+> show collections
+================================
+To drop collection
+Go to respective database and run
+> db.collectionName.drop()
+==================================
+To show data of a collection
+db.collection.find()
+==================================
+To insert data into a collection
+db.collection.insertMany({},{})
+db.collection.insertOne({})
+db.collection.insert({})
+==================================
+To show the documents in the collection
+db.collection.find().pretty()
+========================================
+select all from biodata(collection) where class = 12
+db.biodata.find({class:{$eq:12}})
+=====================================================
+select all from biodata(collection) where age > 12
+db.biodata.find({age:{$gt:12}})
+
+db.biodata.find({age:{$in:[13, 21]}})
+====================================================
+Logical operator $and
+select all from biodata where name = "Shahid" and class = 12
+db.biodata.find({$and:[{name:"Shahid"},{class:12}]})
+==========
+$not
+db.boidata.find({class:{$not: {$lt:12}}})
+===============================================================
+Projection
+To show the class of a particular name.
+> db.biodata.find({name:{$eq:"Shahid"}}, {class:1})
+=====================================================
+methods
+count()
+> db.biodata.find().count()
+> 4
+Count the documents having class equals 9
+> db.biodata.find({class:{$eq:9}}).count()
+> 1
+===================================================
+methods
+sort
+> db.biodata.find().sort({class:1})
+=======================================
+Update Query
+> db.biodata.updateOne({_id:1}, {$set: {age:21}})
